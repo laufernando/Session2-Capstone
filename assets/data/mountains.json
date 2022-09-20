@@ -1,5 +1,6 @@
 {
-    "mountains": [{
+    "mountains": [
+    {
         "name": "Mt. Washington",
         "elevation": 6288,
         "effort": "Strenuous",
@@ -479,5 +480,6 @@
             "lat": 43.966565,
             "lng": -71.556745
         }
-    }]
+    }
+   ]
 }

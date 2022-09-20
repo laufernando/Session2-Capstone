@@ -1,9 +1,12 @@
 "use strict"
 const select_type = document.getElementById("type_filter");
 const select_search = document.getElementById("search");
+const table = document.getElementById('tabla_parks');
 
 
 select_type.addEventListener("change", function() {
+
+    table.innerHTML = "";
     if (select_type.value === "1"){
         select_search.style.display = "block";
         agregar_filtro_location();
@@ -19,17 +22,67 @@ select_type.addEventListener("change", function() {
 });
 
 select_search.addEventListener("change", function() {
+        
+        table.innerHTML = "";
+
+
     if (select_type.value === "1"){
-       
+       table.innerHTML = `<thead>
+       <tr>
+         <th scope="col">Location Name</th>
+         <th scope="col">Address</th>
+         <th scope="col">City</th>
+         <th scope="col">State</th>
+         <th scope="col">Location ID</th>
+       </tr>
+     </thead>
+     <tbody>`;
         nationalParksArray.forEach(element=>{
             if (element.State === select_search.value){
-                console.log(element);
+                table.innerHTML += `
+                <tr>
+                    <td>${element.LocationName}</td>
+                    <td>${element.Address}</td>
+                    <td>${element.City}</td>
+                    <td>${element.State}</td>
+                    <td>${element.LocationID}</td>
+                </tr>
+                `;
+            }else if (select_search.value === "-1"){
+                table.innerHTML += `
+                <tr>
+                    <td>${element.LocationName}</td>
+                    <td>${element.Address}</td>
+                    <td>${element.City}</td>
+                    <td>${element.State}</td>
+                    <td>${element.LocationID}</td>
+                </tr>
+                `;
             }
         });
+        table.innerHTML += `<tbody>`;
     }else if (select_type.value == "2"){
         nationalParksArray.forEach(element=>{
             if (element.LocationName.includes(select_search.value)){
-                console.log(element);
+                table.innerHTML += `
+                <tr>
+                    <td>${element.LocationName}</td>
+                    <td>${element.Address}</td>
+                    <td>${element.City}</td>
+                    <td>${element.State}</td>
+                    <td>${element.LocationID}</td>
+                </tr>
+                `;
+            }else if (select_search.value === "-1"){
+                table.innerHTML += `
+                <tr>
+                    <td>${element.LocationName}</td>
+                    <td>${element.Address}</td>
+                    <td>${element.City}</td>
+                    <td>${element.State}</td>
+                    <td>${element.LocationID}</td>
+                </tr>
+                `;
             }
         });
 
@@ -43,8 +96,16 @@ function agregar_filtro_location() {
     for (let i = select_search.options.length; i >= 0; i--) {
         select_search.remove(i);
       }
+      const option = document.createElement('option');
+            option.value = "0";
+            option.text = "Choose...";
+            select_search.appendChild(option);
+      const ele = document.createElement('option');
+            ele.value = "-1";
+            ele.text = "All Parks";
+            select_search.appendChild(ele);
       locationsArray.forEach(element => {
-            const option = document.createElement('option');
+        const option = document.createElement('option');
             option.value = element;
             option.text = element.toLowerCase();
             select_search.appendChild(option);
@@ -56,7 +117,14 @@ function agregar_filtro_type_parks() {
     for (let i = select_search.options.length; i >= 0; i--) {
         select_search.remove(i);
       }
-
+      const option = document.createElement('option');
+            option.value = "0";
+            option.text = "Choose...";
+            select_search.appendChild(option);
+      const ele = document.createElement('option');
+            ele.value = "-1";
+            ele.text = "All Parks";
+            select_search.appendChild(ele);
       parkTypesArray.forEach(element => {
             const option = document.createElement('option');
             option.value = element;
