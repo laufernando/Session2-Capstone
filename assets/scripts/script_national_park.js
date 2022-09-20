@@ -34,11 +34,14 @@ select_search.addEventListener("change", function() {
          <th scope="col">City</th>
          <th scope="col">State</th>
          <th scope="col">Location ID</th>
+         <th scope="col">Visit</th>
        </tr>
      </thead>
      <tbody>`;
         nationalParksArray.forEach(element=>{
+            let url = element.Visit  ? `<a href=${element.Visit} target="_blank">Visit</a>` : "N/A";
             if (element.State === select_search.value){
+                
                 table.innerHTML += `
                 <tr>
                     <td>${element.LocationName}</td>
@@ -46,6 +49,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td>${url}</td>
                 </tr>
                 `;
             }else if (select_search.value === "-1"){
@@ -56,6 +60,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td>${url}</td>
                 </tr>
                 `;
             }
@@ -63,6 +68,7 @@ select_search.addEventListener("change", function() {
         table.innerHTML += `<tbody>`;
     }else if (select_type.value == "2"){
         nationalParksArray.forEach(element=>{
+            let url = element.Visit  ? `<a href=${element.Visit} target="_blank">Visit</a>` : "N/A";
             if (element.LocationName.includes(select_search.value)){
                 table.innerHTML += `
                 <tr>
@@ -71,6 +77,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td>${url}</td>
                 </tr>
                 `;
             }else if (select_search.value === "-1"){
@@ -81,6 +88,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td>${url}</td>
                 </tr>
                 `;
             }
@@ -107,7 +115,7 @@ function agregar_filtro_location() {
       locationsArray.forEach(element => {
         const option = document.createElement('option');
             option.value = element;
-            option.text = element.toLowerCase();
+            option.text = element;
             select_search.appendChild(option);
             
         }); 
@@ -128,7 +136,7 @@ function agregar_filtro_type_parks() {
       parkTypesArray.forEach(element => {
             const option = document.createElement('option');
             option.value = element;
-            option.text = element.toLowerCase();
+            option.text = element;
             select_search.appendChild(option);
             
         });
