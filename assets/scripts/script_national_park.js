@@ -34,6 +34,7 @@ select_search.addEventListener("change", function() {
          <th scope="col">City</th>
          <th scope="col">State</th>
          <th scope="col">Location ID</th>
+         <th scope="col">Maps</th>
          <th scope="col">Visit</th>
        </tr>
      </thead>
@@ -49,6 +50,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td><a href="https://www.google.com/maps/search/?api=1&query=${element.Latitude},${element.Longitude}&zoom=20" target="_blank">Maps</a></td>
                     <td>${url}</td>
                 </tr>
                 `;
@@ -60,6 +62,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td><a href="https://www.google.com/maps/search/?api=1&query=${element.Latitude},${element.Longitude}&zoom=20" target="_blank">Maps</a></td>
                     <td>${url}</td>
                 </tr>
                 `;
@@ -77,6 +80,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td><a href="https://www.google.com/maps/search/?api=1&query=${element.Latitude},${element.Longitude}&zoom=20" target="_blank">Maps</a></td>
                     <td>${url}</td>
                 </tr>
                 `;
@@ -88,6 +92,7 @@ select_search.addEventListener("change", function() {
                     <td>${element.City}</td>
                     <td>${element.State}</td>
                     <td>${element.LocationID}</td>
+                    <td><a href="https://www.google.com/maps/search/?api=1&query=${element.Latitude},${element.Longitude}&zoom=20" target="_blank">Maps</a></td>
                     <td>${url}</td>
                 </tr>
                 `;

@@ -1,18 +1,15 @@
+const btn_w = document.getElementById("wildcat");
+const card = document.getElementById("info_body");
 
-
-
-const select_mount = document.getElementById("mount");
-const cards = document.getElementById("target_mounts");
-
-select_mount.addEventListener("change", function(){
-    cards.innerHTML = "";
+btn_w.addEventListener("click",function () {
+    card.innerHTML = "";
     mountainsArray.forEach(element => {
 
-        if (element.name.includes(select_mount.value)){
+        if (element.name = "Wildcat Mountain"){
 
             //Using the function to fetch the sunset/sunrise times for a specific mountain 
             getSunsetForMountain(element.coords.lat , element.coords.lng).then(sunsetData => {
-                cards.innerHTML += `
+                card.innerHTML += `
                 <div class="card col-lg-4 col-sm-12 center" >
                     <img src="assets/images/mountains/${element.img}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -27,14 +24,12 @@ select_mount.addEventListener("change", function(){
             
         }
     });
+    
+})
 
     //function that can "fetch" the sunset/sunrise times
-async function getSunsetForMountain(lat, lng){
-    let response = await fetch(`http://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`)
-    let data = await response.json()
-    return data
-}
-
-
-});
-
+    async function getSunsetForMountain(lat, lng){
+        let response = await fetch(`http://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`)
+        let data = await response.json()
+        return data
+    }
