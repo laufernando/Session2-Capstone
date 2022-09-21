@@ -5,7 +5,24 @@
     width: 50%;
   }
 
-#search{
+#search, #export_data{
     display: none;
+}
+
+body{
+  font-style: italic;
+}
+
+table{
+  background-color: black;
+  border-radius: 10px;
+}
+
+table td, th{
+  color: white;
+}
+
+.nav-link{
+  color: white;
 }
 

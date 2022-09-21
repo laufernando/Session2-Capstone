@@ -2,10 +2,11 @@
 const select_type = document.getElementById("type_filter");
 const select_search = document.getElementById("search");
 const table = document.getElementById('tabla_parks');
+const btn_export = document.getElementById("export_data");
 
 
 select_type.addEventListener("change", function() {
-
+    btn_export.style.display="none";
     table.innerHTML = "";
     if (select_type.value === "1"){
         select_search.style.display = "block";
@@ -24,10 +25,9 @@ select_type.addEventListener("change", function() {
 select_search.addEventListener("change", function() {
         
         table.innerHTML = "";
+        btn_export.style.display="block";
 
-
-    if (select_type.value === "1"){
-       table.innerHTML = `<thead>
+        table.innerHTML = `<thead>
        <tr>
          <th scope="col">Location Name</th>
          <th scope="col">Address</th>
@@ -39,7 +39,10 @@ select_search.addEventListener("change", function() {
        </tr>
      </thead>
      <tbody>`;
+    if (select_type.value === "1"){
+       
         nationalParksArray.forEach(element=>{
+
             let url = element.Visit  ? `<a href=${element.Visit} target="_blank">Visit</a>` : "N/A";
             if (element.State === select_search.value){
                 
@@ -68,9 +71,10 @@ select_search.addEventListener("change", function() {
                 `;
             }
         });
-        table.innerHTML += `<tbody>`;
+        
     }else if (select_type.value == "2"){
         nationalParksArray.forEach(element=>{
+
             let url = element.Visit  ? `<a href=${element.Visit} target="_blank">Visit</a>` : "N/A";
             if (element.LocationName.includes(select_search.value)){
                 table.innerHTML += `
@@ -100,6 +104,8 @@ select_search.addEventListener("change", function() {
         });
 
     }
+    table.innerHTML += `<tbody>`
+    ;
     
 
 });
@@ -148,3 +154,36 @@ function agregar_filtro_type_parks() {
   
 }
 
+
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var txt = "";
+    txt =tableSelect.outerHTML.replace(/ /g, '%20').replace(/#\S+/g,"");
+    var tableHTML = txt;
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
