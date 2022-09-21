@@ -26,3 +26,13 @@ table td, th{
   color: white;
 }
 
+body {
+  width: 100%;
+  background-image: url("/assets/images/Background/back.jpg");
+  background-size:  100%;
+}
+
+img{
+  border-radius: 8px;
+  opacity: 89%;
+}
