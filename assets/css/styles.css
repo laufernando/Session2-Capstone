@@ -28,7 +28,7 @@ table td, th{
 
 body {
   width: 100%;
-  background-image: url("/assets/images/Background/back.jpg");
+  background-image: url("../images/Background/back.jpg");
   background-size:  100%;
 }
 
